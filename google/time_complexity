@@ -1,0 +1,138 @@
+##Time Complexity: Definition and Importance:
+Time complexity is a measure of the amount of computational time that an algorithm takes to complete as a function of the length of the input. 
+It provides an upper bound on the running time of an algorithm, which helps in understanding the efficiency and scalability of the algorithm.
+Importance: Understanding time complexity helps in selecting the most efficient algorithm to solve a problem, especially when dealing with large datasets or performance-critical applications.
+Types of Time Complexities
+1.Constant Time: O(1)
+Description: The algorithm takes the same amount of time regardless of the input size.
+Example: Accessing an element in an array by index.
+Scenario: Fetching the first element of an array, performing arithmetic operations
+int getFirstElement(int arr[]) {
+    return arr[0];
+}
+
+2.Logarithmic Time: O(log n)
+Description: The time taken grows logarithmically as the input size increases.
+Example: Binary search in a sorted array.
+Scenario: Searching in a balanced binary search tree.
+int binarySearch(int arr[], int left, int right, int x) {
+    if (right >= left) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == x) return mid;
+        if (arr[mid] > x) return binarySearch(arr, left, mid - 1, x);
+        return binarySearch(arr, mid + 1, right, x);
+    }
+    return -1;
+}
+
+3.Linear Time: O(n)
+Description: The time taken grows linearly with the input size.
+Example: Traversing an array.
+Scenario: Finding the maximum element in an array.
+int findMax(int arr[], int n) {
+    int max = arr[0];
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > max) max = arr[i];
+    }
+    return max;
+}
+
+4.Linearithmic Time: O(n log n)
+Description: The time taken grows in proportion to (𝑛.log.𝑛)
+Example: Efficient sorting algorithms like Merge Sort and Quick Sort.
+Scenario: Sorting a list of numbers.
+void mergeSort(int arr[], int l, int r) {
+    if (l < r) {
+        int m = l + (r - l) / 2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m + 1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+5.Quadratic Time: O(n^2)
+Description: The time taken is proportional to the square of the input size.
+Example: Simple sorting algorithms like Bubble Sort, Insertion Sort.
+Scenario: Comparing every element with every other element.
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+6.Cubic Time: O(n^3)
+Description: The time taken is proportional to the cube of the input size.
+Example: Algorithms that involve three nested loops.
+Scenario: Solving the matrix multiplication problem using a naive approach.
+void multiplyMatrices(int a[][N], int b[][N], int result[][N], int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < n; k++) {
+                result[i][j] += a[i][k] * b[j][k];
+            }
+        }
+    }
+}
+
+7.Exponential Time: O(2^n)
+
+Description: The time taken doubles with each additional element in the input.
+Example: Recursive algorithms that solve problems by dividing them into multiple subproblems like the Fibonacci sequence.
+Scenario: Solving the Tower of Hanoi problem.
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+8.Factorial Time: O(n!)
+
+Description: The time taken grows factorially with the input size.
+Example: Solving the Travelling Salesman Problem using brute-force approach.
+Scenario: Generating all permutations of a set.
+void permute(string a, int l, int r) {
+    if (l == r) cout << a << endl;
+    else {
+        for (int i = l; i <= r; i++) {
+            swap(a[l], a[i]);
+            permute(a, l + 1, r);
+            swap(a[l], a[i]);
+        }
+    }
+}
+Scenarios and Selection
+Small Input Sizes: Algorithms with higher time complexities (like O(n^2), O(2^n)) may still perform adequately.
+Large Input Sizes: Prefer algorithms with lower time complexities (like O(log n), O(n), O(n log n)).
+Real-time Systems: Require the fastest algorithms (O(1), O(log n)) to ensure quick response times.
+Batch Processing: Can afford algorithms with higher time complexities if they provide better accuracy or solve more complex problems.
+
+Here are the time complexities listed from smallest to largest:
+O(1): Constant Time
+O(log n): Logarithmic Time
+O(n): Linear Time
+O(n log n): Linearithmic Time
+O(n^2): Quadratic Time
+O(n^3): Cubic Time
+O(2^n): Exponential Time
+O(n!): Factorial Time
+Summary with Examples
+O(1): Constant Time
+Example: Accessing an array element by index.
+O(log n): Logarithmic Time
+Example: Binary search in a sorted array.
+O(n): Linear Time
+Example: Traversing an array to find the maximum element.
+O(n log n): Linearithmic Time
+Example: Efficient sorting algorithms like Merge Sort.
+O(n^2): Quadratic Time
+Example: Simple sorting algorithms like Bubble Sort.
+O(n^3): Cubic Time
+Example: Matrix multiplication using a naive approach.
+O(2^n): Exponential Time
+Example: Calculating Fibonacci numbers using recursion.
+O(n!): Factorial Time
+Example: Solving the Travelling Salesman Problem using brute-force.
