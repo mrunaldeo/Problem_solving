@@ -1,0 +1,111 @@
+##Space Complexity: Definition and Importance##
+Definition: Space complexity is a measure of the amount of working storage an algorithm needs. It considers both the fixed part (space required by variables, constants, and program code) and the variable part (space required by dynamically allocated memory, recursion stack space, etc.).
+Importance: Understanding space complexity is crucial for optimizing memory usage, especially in environments with limited resources, and ensuring that an algorithm can handle large datasets efficiently without running out of memory.
+Types of Space Complexities
+1.Constant Space: O(1)
+Description: The algorithm uses a fixed amount of space regardless of the input size.
+Example: A function that swaps two variables.
+Scenario: Simple operations and calculations that don't require extra memory allocation.
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp;
+}
+2.Logarithmic Space: O(log n)
+Description: The space required grows logarithmically with the input size.
+Example: Recursive algorithms that divide the problem size by a constant factor at each step, like binary search.
+Scenario: Recursive algorithms with limited depth.
+int binarySearch(int arr[], int left, int right, int x) {
+    if (right >= left) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == x) return mid;
+        if (arr[mid] > x) return binarySearch(arr, left, mid - 1, x);
+        return binarySearch(arr, mid + 1, right, x);
+    }
+    return -1;
+}
+3.Linear Space: O(n)
+Description: The space required grows linearly with the input size.
+Example: Storing an array of size n.
+Scenario: Algorithms that require additional arrays or lists proportional to the input size.
+void printArray(int arr[], int n) {
+    int copy[n];
+    for (int i = 0; i < n; i++) {
+        copy[i] = arr[i];
+    }
+    for (int i = 0; i < n; i++) {
+        cout << copy[i] << " ";
+    }
+}
+4.Linearithmic Space: O(n log n)
+Description: The space required grows in proportion to nlogn.
+Example: Merge Sort which requires additional space for merging.
+Scenario: Sorting algorithms that divide and merge arrays.
+void merge(int arr[], int l, int m, int r) {
+    int n1 = m - l + 1;
+    int n2 = r - m;
+    int L[n1], R[n2];
+    for (int i = 0; i < n1; i++) L[i] = arr[l + i];
+    for (int i = 0; i < n2; i++) R[i] = arr[m + 1 + i];
+    int i = 0, j = 0, k = l;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) arr[k++] = L[i++];
+        else arr[k++] = R[j++];
+    }
+    while (i < n1) arr[k++] = L[i++];
+    while (j < n2) arr[k++] = R[j++];
+}
+5.Quadratic Space: O(n^2)
+Description: The space required is proportional to the square of the input size.
+Example: Creating a 2D array of size n x n.
+Scenario: Algorithms that involve storing intermediate results in a 2D table.
+void print2DArray(int n) {
+    int arr[n][n];
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            arr[i][j] = i + j;
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+6.Exponential Space: O(2^n)
+Description: The space required doubles with each additional element in the input.
+Example: Recursive algorithms that solve problems by exploring all subsets, like the subset-sum problem.
+Scenario: Algorithms that generate all possible combinations or subsets.
+void printSubsets(int arr[], int n) {
+    int total = 1 << n;
+    for (int i = 0; i < total; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i & (1 << j)) cout << arr[j] << " ";
+        }
+        cout << endl;
+    }
+}
+7.Factorial Space: O(n!)
+Description: The space required grows factorially with the input size.
+Example: Algorithms that generate all permutations of a set.
+Scenario: Solving the Travelling Salesman Problem using brute-force approach.
+void permute(string a, int l, int r) {
+    if (l == r) cout << a << endl;
+    else {
+        for (int i = l; i <= r; i++) {
+            swap(a[l], a[i]);
+            permute(a, l + 1, r);
+            swap(a[l], a[i]);
+        }
+    }
+}
+Scenarios and Selection
+Small Input Sizes: Algorithms with higher space complexities (like O(n^2), O(2^n)) may still be feasible.
+Large Input Sizes: Prefer algorithms with lower space complexities (like O(1), O(n)).
+Memory-constrained Environments: Algorithms with minimal space requirements are preferred (O(1), O(log n)).
+Performance-critical Systems: Efficient memory usage is crucial to avoid memory overflow and ensure quick access.
+Summary of Space Complexities from Smallest to Largest
+O(1): Constant Space
+O(log n): Logarithmic Space
+O(n): Linear Space
+O(n log n): Linearithmic Space
+O(n^2): Quadratic Space
+O(2^n): Exponential Space
+O(n!): Factorial Space
